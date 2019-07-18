@@ -42,8 +42,8 @@
 
 
         </div>
-
         <script>
+          //runs every 20 milliseconds
     function debounce(func, wait = 20, immediate = true) {
       var timeout;
       return function() {
@@ -58,6 +58,30 @@
         if (callNow) func.apply(context, args);
       };
     }
+
+    const sliderImages = document.querySelectorAll('.slide-in')
+
+    function checkSlide(event) {
+      console.count(window.scrollY)
+      sliderImages.forEach(sliderImage => {
+        //half way through the image
+        const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height / 2
+        //bottom of the image
+        const imageBottom = sliderImage.offsetTop + sliderImage.height
+        // if image is half shown run
+        const ishalfShown = slideInAt > sliderImage.offsetTop
+        //if past image scroll out again
+        const isnot = window.scrollY < imageBottom
+
+        if(ishalfShown && isnot) {
+          sliderImage.classList.add('active')
+        } else {
+          sliderImage.classList.remove('active')
+        }
+      })
+    }
+
+    window.addEventListener('scroll', debounce(checkSlide))
 
   </script>
 
@@ -120,5 +144,7 @@
 
   </style>
 
+    </body>
+    </body>
     </body>
 </html>
