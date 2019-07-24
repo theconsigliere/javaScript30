@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Sort Without Articles</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Sort Without Articles</title>
+    </head>
+    <body>
 
-  <style>
+        <style>
     body {
       margin: 0;
       font-family: sans-serif;
@@ -43,13 +43,38 @@
 
   </style>
 
-  <ul id="bands"></ul>
-
-<script>
+        <ul id="bands"></ul>
+        <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+// remove a or the or an from argument
+function strip(bandName) {
+  return bandName.replace(/^(a |the |an )/i, '').trim()
+}
+
+const alpha = bands.sort((a, b) =>  strip(a) > strip(b) ? 1 : -1 )
+    // compare a & b, so first array item & second array item and so on, the alphabetical goes to the top
+
+// if (strip(a) > strip(b) ) {
+//   return 1 }
+//   else {
+//     return - 1
+//   }
+
+// map array items into inner html
+
+document.querySelector('#bands').innerHTML = alpha.map(band => `<li>${band}</li>`).join('')
+
+
+
+
+console.log(alpha);
 
 </script>
 
-</body>
+    </body>
+</html>
+    </body>
+    </body>
+    </body>
 </html>
